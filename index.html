@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>IP Publico</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+</head>
+<body>
+	<br>
+	<div class="container">
+		<div class="col text-center">
+		<button id="btgetipp" class="btn btn-secondary">IP</button>
+		<button id="btrefresh" class="btn btn-primary">Refresh</button>
+		</div>
+		<form id="frm" visibility="hidden" onsubmit="return false">
+			<div class="form-group">
+			IP Publico
+			<input class="form-control bg-secondary text-white" type="text" id='ippub'><br>
+			Cidade
+			<input class="form-control bg-primary text-white" type="text" id="city"><br>
+			Pais
+			<input class="form-control bg-primary text-white" type="text" id="cw"><br>
+			</div>
+		</form>
+	</div>
+	<script>
+	$(function(){
+		$('#btgetipp').click(function() {
+			$.get("http://ipinfo.io", function(response) {			
+			console.log(response.ip);
+			console.log(response.region);
+			console.log(response.city);
+			console.log(response.country);
+			$("#ippub").val(response.ip);
+			$("#city").val(response.city);
+			$("#cw").val(response.country);
+			}, "jsonp");
+		});
+		$("#btrefresh").click(function(){
+			location.reload();
+			window.location.reload(true);
+		});
+	});
+	</script>	
+</body>
+</html>
