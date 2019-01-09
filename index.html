@@ -22,8 +22,13 @@
 			<input class="form-control bg-secondary text-white" type="text" id='ippub'><br>
 			Cidade
 			<input class="form-control bg-primary text-white" type="text" id="city"><br>
+			Região
+			<input class="form-control bg-primary text-white" type="text" id="reg"><br>
 			Pais
 			<input class="form-control bg-primary text-white" type="text" id="cw"><br>
+			Operadora
+			<input class="form-control bg-primary text-white" type="text" id="ope"><br>
+			
 			</div>
 		</form>
 	</div>
@@ -31,13 +36,18 @@
 	$(function(){
 		$('#btgetipp').click(function() {
 			$.get("http://ipinfo.io", function(response) {			
-			console.log(response.ip);
-			console.log(response.region);
-			console.log(response.city);
-			console.log(response.country);
+			console.log("ip: "+response.ip);			
+			console.log("city: "+response.city);
+			console.log("region: "+response.region);
+			console.log("country: "+response.country);
+			console.log("org: "+response.org);
+			
 			$("#ippub").val(response.ip);
 			$("#city").val(response.city);
+			$("#reg").val(response.region);
 			$("#cw").val(response.country);
+			$("#ope").val(response.org);
+			
 			}, "jsonp");
 		});
 		$("#btrefresh").click(function(){
